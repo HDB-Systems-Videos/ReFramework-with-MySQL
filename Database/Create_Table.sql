@@ -1,0 +1,20 @@
+CREATE TABLE `queue` (
+  `queue_id` int(9) NOT NULL AUTO_INCREMENT,
+  `transaction_id` varchar(36) NOT NULL,
+  `cash_in` varchar(30) DEFAULT NULL,
+  `on_us_check` varchar(30) DEFAULT NULL,
+  `not_on_us_check` varchar(30) DEFAULT NULL,
+  `status` varchar(50) NOT NULL,
+  `started_date` datetime DEFAULT NULL,
+  `ended_date` datetime DEFAULT NULL,
+  `deadline_date` datetime DEFAULT NULL,
+  `postpone_date` datetime DEFAULT NULL,
+  `priority` varchar(50) NOT NULL,
+  `retry_count` int(11) NOT NULL,
+  `exception` varchar(50) DEFAULT NULL,
+  `robot` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`queue_id`),
+  CONSTRAINT `CONSTRAINT_1` CHECK (`status` = 'New' or `status` = 'In Progress' or `status` = 'Sucessful' or `status` = 'Failed' or `status` = 'Retried' or `status` = 'Abandoned' or `status` = 'Deleted'),
+  CONSTRAINT `CONSTRAINT_2` CHECK (`priority` = '3' or `priority` = '2' or `priority` = '1'),
+  CONSTRAINT `CONSTRAINT_3` CHECK (`exception` = 'Application' or `exception` = 'Business')
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
